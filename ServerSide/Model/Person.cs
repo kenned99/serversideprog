@@ -11,12 +11,12 @@ namespace ServerSide.Model
 
         [Required]
         [StringLength(60, MinimumLength = 2)]
-        [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$\-", ErrorMessage = "Only letters are allowed {0}")]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$\-", ErrorMessage = "Only letters are allowed in first name")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(60, MinimumLength = 2)]
-        [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$\-", ErrorMessage = "Only letters are allowed {0}")]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$\-", ErrorMessage = "Only letters are allowed in last name")]
         public string LastName { get; set; }
 
         [Required]

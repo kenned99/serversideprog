@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ServerSideData.Model;
+using ServerSide.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,7 @@ namespace ServerSideData
 {
     public class PersonsDBContext : DbContext
     {
-        public PersonsDBContext(DbContextOptions<DeltagereDbContext> options)
+        public PersonsDBContext(DbContextOptions<PersonsDBContext> options)
             : base(options)
         {
 
