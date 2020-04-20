@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ServerSide.Model
 {
-    class Person
+    public class Person
     {
         public int Id { get; set; }
 
