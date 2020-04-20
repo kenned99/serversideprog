@@ -1,9 +1,9 @@
-using Serverside.Model;
+using ServerSide.Model;
 using System.Collections.Generic;
 
 namespace ServerSide
 {
-    public interface IServersideAcess
+    public interface IServersideAccess
     {
         public Person GetPerson(int id);
         public IEnumerable<Person> GetPersonByName(string navn = null);

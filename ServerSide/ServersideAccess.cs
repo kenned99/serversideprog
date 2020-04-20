@@ -1,7 +1,7 @@
 using ServerSide.Model;
+using ServerSideData;
 using System.Collections.Generic;
 using System.Linq;
-using ServerSide;
 
 namespace ServerSide
 {
@@ -21,10 +21,10 @@ namespace ServerSide
 
         public Person GetPerson(int id)
         {
-            return db.Person.Find(id);
+            return db.Persons.Find(id);
         }
 
-        public IEnumerable<Deltager> GetPersonByName(string name = null)
+        public IEnumerable<Person> GetPersonByName(string name = null)
         {
             var query = from d in db.Persons
                         where d.FirstName.StartsWith(name) || string.IsNullOrEmpty(name)
@@ -33,7 +33,7 @@ namespace ServerSide
             return query;
         }
 
-        public Person AddPerson(Persons NewPerson)
+        public Person AddPerson(Person NewPerson)
         {
             db.Add(NewPerson);
             return NewPerson;
