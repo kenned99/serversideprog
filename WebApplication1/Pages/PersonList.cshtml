@@ -4,12 +4,39 @@
     ViewData["Title"] = "Person Liste";
 }
 
-<h1>Person Liste</h1>
+<h1>Person List</h1>
 
-@foreach (var Per in Model.People)
-{
-    <tr> 
-        <td>@Per.Id</td>
-        
+<div>
+    <form class="form-inline float-left" method="get">
+        <!--form inline får søg på linje-->
+        <input class="form-control mb-5" asp-for="filter" placeholder="Search" />
+        <button class="btn btn-primary mb-5">Search</button>
+    </form>
+    <div class="float-right">
+        <a asp-page="/Stats" asp-route-PersonId="0" class="btn btn-success mb-5">Create Person</a>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Gender</th>
+        <th>Permille</th>
+        <th>Stats</th>
+        <th>Delete</th>
     </tr>
-}
+    @foreach (var Per in Model.People)
+    {
+<tr>
+    <td>@Per.Id</td>
+    <td>@Per.FirstName</td>
+    <td>@Per.LastName</td>
+    <td>@Per.Gender</td>
+    <td>@Per.CurPromille</td>
+    <td><a asp-page="/Stats" asp-route-deltagerId="@Per.Id" class="btn btn-primary">Stats</a></td>
+    <td><a asp-page-handler="Delete" asp-page="./liste" asp-route-deltagerId="@Per.Id" class="btn btn-danger">Delete</a></td>
+</tr>
+    }
+</table>
