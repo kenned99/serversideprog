@@ -12,7 +12,7 @@ namespace ServerSideData
         public PersonsDBContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<PersonsDBContext>();
-            builder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DeltagerDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            builder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CanYouDriveDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             return new PersonsDBContext(builder.Options);
         }
     }

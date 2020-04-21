@@ -18,11 +18,11 @@ namespace WebApplication1.Pages
             this.ServersideAccess = SA;
         }
 
-        public Person Person { get; set; }
+        //public Person Person { get; set; }
 
-        public void OnGet(int PersonId)
-        {
-            Person = ServersideAccess.GetPerson(PersonId);
-        }
+        //public void OnGet(int PersonId)
+        //{
+        //    Person = ServersideAccess.GetPerson(PersonId);
+        //}
     }
 }
