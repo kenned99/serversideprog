@@ -27,7 +27,7 @@ namespace WebApplication1.Pages
             serverside.Commit();
 
             TempData.Clear();
-            TempData.Add("lastAction", "Member with ID: \"" + PersonId + "\" was removed!");
+            TempData.Add("lastAction", "Person with ID: \"" + PersonId + "\" was removed!");
             return RedirectToPage("./PersonList");
         }
     }
