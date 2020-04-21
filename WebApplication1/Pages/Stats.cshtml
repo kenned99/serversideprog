@@ -4,7 +4,8 @@
     ViewData["Title"] = "Stats";
 }
 <h1>Stats</h1>
-<div class="border-primary col-1">
+<div class="row">
+<div class="border-primary col-4">
     <h3>Can you drive?</h3>
     
     @if (Model.Person.CurPromille >= 0.5)
@@ -17,10 +18,10 @@
     }
 </div>
 
-<div class="col-2">
+<div class="col-4">
     <h3>Drinking stats:</h3>
-    <label asp-for="@Model.Person.CurPromille">@Model.Person.CurPromille</label>
-    <label asp-for="@Model.Person.TopPromille">@Model.Person.TopPromille</label>
+    <label asp-for="@Model.Person.CurPromille">Current promille: @Model.Person.CurPromille</label>
+    <label asp-for="@Model.Person.TopPromille">Top promille: @Model.Person.TopPromille</label>
     @if (Model.Person.CurPromille > Model.Person.TopPromille)
     {
         <label class="text-success">You've never been this drunk before! Congratulations!</label>
@@ -28,10 +29,11 @@
     }
 </div>
 
-<div class="col-3">
+<div class="col-4">
     <h3>General information:</h3>
     <label>Name: @Model.Person.FirstName @Model.Person.LastName</label>
-    <label asp-for="@Model.Person.Gender">@Model.Person.Gender</label>
-    <label asp-for="@Model.Person.Weight">@Model.Person.Weight</label>
-    <label asp-for="@Model.Person.DrinkingStart">@Model.Person.DrinkingStart</label>
+    <label asp-for="@Model.Person.Gender">Gender: @Model.Person.Gender</label>
+    <label asp-for="@Model.Person.Weight">Weight: @Model.Person.Weight kg.</label>
+    <label asp-for="@Model.Person.DrinkingStart">You started drinking at: @Model.Person.DrinkingStart</label>
+</div>
 </div>
