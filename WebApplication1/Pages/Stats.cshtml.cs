@@ -20,6 +20,7 @@ namespace WebApplication1.Pages
 
         public Person Person { get; set; }
 
+        [BindProperty]
         public int State { get; set; }
 
         public bool NewRecord = false;
