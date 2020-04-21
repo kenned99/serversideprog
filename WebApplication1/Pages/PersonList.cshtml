@@ -13,7 +13,7 @@
         <button class="btn btn-primary mb-5">Search</button>
     </form>
     <div class="float-right">
-        <a asp-page="/Stats" asp-route-PersonId="0" class="btn btn-success mb-5">Create Person</a>
+        <a asp-page="/Stats" asp-route-State="2" class="btn btn-success mb-5">Create Person</a>
     </div>
 </div>
 
@@ -35,8 +35,8 @@
     <td>@Per.LastName</td>
     <td>@Per.Gender</td>
     <td>@Per.CurPermille</td>
-    <td><a asp-page="/Stats" asp-route-deltagerId="@Per.Id" class="btn btn-primary">Stats</a></td>
-    <td><a asp-page-handler="Delete" asp-page="./liste" asp-route-deltagerId="@Per.Id" class="btn btn-danger">Delete</a></td>
+    <td><a asp-page="/Stats" asp-route-state="1" class="btn btn-primary">Stats</a></td>
+    <td><a asp-page-handler="Delete" asp-page="/PersonList" asp-route-deltagerId="@Per.Id" class="btn btn-danger">Delete</a></td>
 </tr>
     }
 </table>
