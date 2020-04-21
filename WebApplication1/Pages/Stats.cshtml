@@ -3,6 +3,35 @@
 @{
     ViewData["Title"] = "Stats";
 }
-
 <h1>Stats</h1>
+<div class="border-primary col-1">
+    <h3>Can you drive?</h3>
+    
+    @if (Model.Person.CurPromille >= 0.5)
+    {
+        <h4 class="badge-danger badge">No</h4>
+    }
+    else
+    {
+        <h4 class="badge-success badge">Yes</h4>
+    }
+</div>
 
+<div class="col-2">
+    <h3>Drinking stats:</h3>
+    <label asp-for="@Model.Person.CurPromille">@Model.Person.CurPromille</label>
+    <label asp-for="@Model.Person.TopPromille">@Model.Person.TopPromille</label>
+    @if (Model.Person.CurPromille > Model.Person.TopPromille)
+    {
+        <label class="text-success">You've never been this drunk before! Congratulations!</label>
+
+    }
+</div>
+
+<div class="col-3">
+    <h3>General information:</h3>
+    <label>Name: @Model.Person.FirstName @Model.Person.LastName</label>
+    <label asp-for="@Model.Person.Gender">@Model.Person.Gender</label>
+    <label asp-for="@Model.Person.Weight">@Model.Person.Weight</label>
+    <label asp-for="@Model.Person.DrinkingStart">@Model.Person.DrinkingStart</label>
+</div>

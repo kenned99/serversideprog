@@ -14,5 +14,6 @@ namespace ServerSideData
 
         }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Drink> Drinks { get; set; }
     }
 }
