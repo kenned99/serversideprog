@@ -25,6 +25,7 @@
         <th>Gender</th>
         <th>Permille</th>
         <th>Stats</th>
+        <th>Edit</th>
         <th>Delete</th>
     </tr>
     @foreach (var Per in Model.People)
@@ -35,7 +36,8 @@
     <td>@Per.LastName</td>
     <td>@Per.Gender</td>
     <td>@Per.CurPermille</td>
-    <td><a asp-page="/Stats" asp-route-state="1" class="btn btn-primary">Stats</a></td>
+    <td><a asp-page="/Stats" asp-route-state="0" class="btn btn-primary">Stats</a></td>
+    <td><a asp-page="/Stats" asp-route-state="1" class="btn btn-success">Edit</a></td>
     <td><a asp-page-handler="Delete" asp-page="/PersonList" asp-route-deltagerId="@Per.Id" class="btn btn-danger">Delete</a></td>
 </tr>
     }

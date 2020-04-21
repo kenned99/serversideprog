@@ -60,16 +60,20 @@
                 <input class="form-control" asp-for="Person.LastName" />
                 <span asp-validation-for="Person.LastName" class="text-danger"></span>
             </div>
-            Alder:
+
+            Weight:
             <div class="form-group">
                 <input class="form-control" asp-for="Person.Weight" />
                 <span asp-validation-for="Person.Weight" class="text-danger"></span>
             </div>
+
+            Gender:
             <div class="form-group">
-                <input class="form-control" asp-for="Person.Gender" />
+                <div class="form-group"><select multiple class="form-control" asp-for="Person.Gender" asp-items="@Model.GenderListItems"></select></div>
                 <span asp-validation-for="Person.Gender" class="text-danger"></span>
             </div>
-            <button type="submit" asp-page-handler="Update" class="btn-success btn">Update user</button>
+
+            <button type="submit" asp-page-handler="Update" class="btn-success btn" asp-route-State="1">Update user</button>
             <button type="submit" asp-page-handler="Discard" class="btn-danger btn">Discard</button>
         </form>
         break;
@@ -81,31 +85,26 @@
 
             Fornavn:
             <div class="form-group">
-                <input class="form-control" asp-for="Person.FirstName" />
+                <input class="form-control" asp-for="Person.FirstName"/>
                 <span asp-validation-for="Person.FirstName" class="text-danger"></span>
             </div>
 
             Efternavn:
             <div class="form-group">
-                <input class="form-control" asp-for="Person.LastName" />
+                <input class="form-control" asp-for="Person.LastName"/>
                 <span asp-validation-for="Person.LastName" class="text-danger"></span>
             </div>
-            Alder:
+            Weight:
             <div class="form-group">
-                <input class="form-control" asp-for="Person.Weight" value="" />
+                <input class="form-control" asp-for="Person.Weight"/>
                 <span asp-validation-for="Person.Weight" class="text-danger"></span>
             </div>
             Gender:
             <div class="form-group">
-                <input class="form-control" asp-for="Person.Gender" value="" />
+                <div class="form-group"><select multiple class="form-control" asp-for="Person.Gender" asp-items="@Model.GenderListItems"></select></div>
                 <span asp-validation-for="Person.Gender" class="text-danger"></span>
             </div>
-            Weight:
-            <div class="form-group">
-                <input class="form-control" asp-for="Person.Weight" value="" />
-                <span asp-validation-for="Person.Weight" class="text-danger"></span>
-            </div>
-            <button type="submit" asp-page-handler="Add" class="btn-success">Add</button>
+            <button type="submit" asp-page-handler="Add" class="btn-success" asp-route-State="2">Add</button>
             <button type="submit" asp-page-handler="Discard" class="btn-danger">Discard</button>
         </form>
         break;
