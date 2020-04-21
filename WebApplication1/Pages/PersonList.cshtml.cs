@@ -13,15 +13,17 @@ namespace WebApplication1.Pages
     {
         private readonly IServersideAccess serverside;
 
+        [BindProperty(SupportsGet = true)]
+        public string filter { get; set; }
+
         public PersonListModel(IServersideAccess serverside)
         {
             this.serverside = serverside;
         }
-        public IEnumerable<Person> People => serverside.GetPersonByName("").OrderBy(x => x.Id);
+        public IEnumerable<Person> People => serverside.GetPersonByName(filter).OrderBy(x => x.Id);
         public void OnGet()
         {
 
         }
-
     }
 }
