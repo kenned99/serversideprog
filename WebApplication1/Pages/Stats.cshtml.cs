@@ -20,10 +20,64 @@ namespace WebApplication1.Pages
 
         public Person Person { get; set; }
 
-        public void OnGet(int PersonId)
+        public int State { get; set; }
+
+        public bool NewRecord = false;
+
+        public void OnGet(int PersonId, int State)
         {
-            PersonId = 1;
+            if (PersonId == 0)
+            {
+                PersonId = 1;
+            }
             Person = ServersideAccess.GetPerson(PersonId);
+
+            if (Person.CurPermille > Person.TopPermille)
+            {
+                NewRecord = true;
+                Person.TopPermille = Person.CurPermille;
+                ServersideAccess.UpdatePerson(Person);
+            }
+
+            this.State = State;
+        }
+
+        public IActionResult OnPostUpdate()
+        {
+            if (ModelState.IsValid)
+            {
+                this.Person = ServersideAccess.UpdatePerson(Person);
+                ServersideAccess.Commit();
+
+                TempData.Add("lastAction", "Person with ID: \"" + Person.Id + "\" was updated!");
+                return RedirectToPage("./PersonList");
+            }
+            else
+            {
+                return Page();
+            }
+        }
+
+        public IActionResult OnPostUndo()
+        {
+            TempData.Add("lastAction", "Person not updated!");
+            return RedirectToPage("./PersonList");
+        }
+
+        public IActionResult OnPostAdd(Person Person)
+        {
+            if (ModelState.IsValid)
+            {
+                ServersideAccess.AddPerson(Person);
+                ServersideAccess.Commit();
+
+                TempData.Add("lastAction", Person.FirstName + " was added successfully!");
+                return RedirectToPage("./PersonList");
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }
