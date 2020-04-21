@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-
+          
 namespace ServerSide.Model
 {
+
+    public enum GenderEnum
+    {
+        Female = 0,
+        Male = 1
+    }
+
     public class Person
     {
         public int Id { get; set; }
@@ -19,8 +26,10 @@ namespace ServerSide.Model
         [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$\-", ErrorMessage = "Only letters are allowed in last name")]
         public string LastName { get; set; }
 
+
+
         [Required]
-        public bool Gender { get; set; }
+        public GenderEnum Gender { get; set; }
 
         [Required]
         [Range(40, 200, ErrorMessage = "You weight somewhere between 40 and 200, type in your real weight.")]
