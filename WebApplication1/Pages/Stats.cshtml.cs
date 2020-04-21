@@ -22,7 +22,7 @@ namespace WebApplication1.Pages
 
         public void OnGet(int PersonId)
         {
-            PersonId = 2;
+            PersonId = 1;
             Person = ServersideAccess.GetPerson(PersonId);
         }
     }
