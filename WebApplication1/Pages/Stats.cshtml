@@ -8,7 +8,7 @@
 <div class="border-primary col-4">
     <h3>Can you drive?</h3>
     
-    @if (Model.Person.CurPromille >= 0.5)
+    @if (Model.Person.CurPermille >= 0.5)
     {
         <h4 class="badge-danger badge">No</h4>
     }
@@ -20,9 +20,9 @@
 
 <div class="col-4">
     <h3>Drinking stats:</h3>
-    <label asp-for="@Model.Person.CurPromille">Current promille: @Model.Person.CurPromille</label>
-    <label asp-for="@Model.Person.TopPromille">Top promille: @Model.Person.TopPromille</label>
-    @if (Model.Person.CurPromille > Model.Person.TopPromille)
+    <label asp-for="@Model.Person.CurPermille">Current permille: @Model.Person.CurPermille</label><br>
+    <label asp-for="@Model.Person.TopPermille">Top permille: @Model.Person.TopPermille</label>
+    @if (Model.Person.CurPermille > Model.Person.TopPermille)
     {
         <label class="text-success">You've never been this drunk before! Congratulations!</label>
 
@@ -31,9 +31,9 @@
 
 <div class="col-4">
     <h3>General information:</h3>
-    <label>Name: @Model.Person.FirstName @Model.Person.LastName</label>
-    <label asp-for="@Model.Person.Gender">Gender: @Model.Person.Gender</label>
-    <label asp-for="@Model.Person.Weight">Weight: @Model.Person.Weight kg.</label>
+    <label>Name: @Model.Person.FirstName @Model.Person.LastName</label><br>
+    <label asp-for="@Model.Person.Gender">Gender: @Model.Person.Gender</label><br>
+    <label asp-for="@Model.Person.Weight">Weight: @Model.Person.Weight kg.</label><br>
     <label asp-for="@Model.Person.DrinkingStart">You started drinking at: @Model.Person.DrinkingStart</label>
 </div>
 </div>

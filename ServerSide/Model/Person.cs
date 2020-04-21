@@ -26,9 +26,9 @@ namespace ServerSide.Model
         [Range(40, 200, ErrorMessage = "You weight somewhere between 40 and 200, type in your real weight.")]
         public int Weight { get; set; }
 
-        public float CurPromille { get; set; }
+        public float CurPermille { get; set; }
 
-        public float TopPromille { get; set; }
+        public float TopPermille { get; set; }
 
         public int RecommendedWater { get; set; }
 
