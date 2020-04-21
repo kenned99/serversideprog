@@ -1,12 +1,12 @@
 ﻿@page
-@model WebApplication1.Pages.PersonListeModel
+@model WebApplication1.Pages.PersonListModel
 @{
     ViewData["Title"] = "Person Liste";
 }
 
 <h1>Person Liste</h1>
 
-@foreach (var Per in Model.Person)
+@foreach (var Per in Model.People)
 {
     <tr> 
         <td>@Per.Id</td>
