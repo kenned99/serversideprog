@@ -56,5 +56,27 @@ namespace ServerSide
             }
             return 0;
         }
+
+        public void CalculatePermille(Person Person)
+        {
+            double ratio = 0.7; //male ratio
+            if (Person.Gender == GenderEnum.Female)
+            {
+                ratio = 0.6;
+            }
+
+            var time = (DateTime.Now - Person.DrinkingStart).TotalHours - 1;
+            double Permille = (Person.Drinks * 12) / (Person.Weight * ratio) - (0.15 * time);
+
+            if (Permille < 0)
+            {
+                Permille = 0f;
+                Person.DrinkingStart = DateTime.Now;
+                Person.Drinks = 0;
+            }
+            Person.CurPermille = (float)Permille;
+            UpdatePerson(Person);
+            Commit();
+        }
     }
 }

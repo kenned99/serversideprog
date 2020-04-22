@@ -12,5 +12,8 @@ namespace ServerSide
         public Person UpdatePerson(Person UpdatedPerson);
         public int DeletePerson(int id);
         public int Commit();
+
+        public void CalculatePermille(Person Person);
+
     }
 }
