@@ -39,12 +39,14 @@ namespace WebApplication1.Pages
             }
         }
 
-        public void OnGetStartDrinking(int PersonId)
+        public IActionResult OnGetStartDrinking(int PersonId)
         {
             var Person = ServersideAccess.GetPerson(PersonId);
             Person.DrinkingStart = DateTime.Now;
             ServersideAccess.UpdatePerson(Person);
             ServersideAccess.Commit();
+            OnGet();
+            return Page();
         }
     }
 }
