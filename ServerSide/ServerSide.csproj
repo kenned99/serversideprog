@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20200422115738_personupdatedxdhehe.cs" />
+    <Compile Remove="Migrations\20200422115738_personupdatedxdhehe.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.0" />
