@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServerSide;
 using ServerSide.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +37,14 @@ namespace WebApplication1.Pages
             {
                 ServersideAccess.CalculatePermille(Per);
             }
+        }
+
+        public void OnGetStartDrinking(int PersonId)
+        {
+            var Person = ServersideAccess.GetPerson(PersonId);
+            Person.DrinkingStart = DateTime.Now;
+            ServersideAccess.UpdatePerson(Person);
+            ServersideAccess.Commit();
         }
     }
 }

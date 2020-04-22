@@ -25,6 +25,7 @@
             <div class="col-4">
                 <h3 asp-for="@Model.Person.CurPermille">Current permille: </h3>
                 <h1>@Model.Person.CurPermille</h1><br>
+
                 <label asp-for="@Model.Person.TopPermille">Top permille: @Model.Person.TopPermille</label>
                 @if (Model.NewRecord)
                 {
@@ -47,8 +48,14 @@
         <h5>ID: @Model.Person.Id</h5>
 
         <form method="post">
+            <!--HIDDEN VALUES-->
             <!--ID:-->
             <input asp-for="Person.Id" readonly hidden />
+            <!--DrinkingStart:-->
+            <input asp-for="Person.DrinkingStart" readonly hidden />
+            <!--Drinks:-->
+            <input asp-for="Person.Drinks" readonly hidden />
+
             Fornavn:
             <div class="form-group">
                 <input class="form-control" asp-for="Person.FirstName" />

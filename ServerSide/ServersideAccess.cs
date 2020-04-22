@@ -59,24 +59,38 @@ namespace ServerSide
 
         public void CalculatePermille(Person Person)
         {
-            double ratio = 0.7; //male ratio
-            if (Person.Gender == GenderEnum.Female)
+            if (Person.Drinks > 0)
             {
-                ratio = 0.6;
+                double ratio = 0.7; //Male ratio
+                if (Person.Gender == GenderEnum.Female)
+                {
+                    ratio = 0.6;
+                }
+
+                var time = (DateTime.Now - Person.DrinkingStart).TotalHours;
+                if (time >= 1)
+                {
+                    time = time - 1;
+                }
+
+                double Permille = (Person.Drinks * 12) / (Person.Weight * ratio) - (0.15 * time);
+                Permille = Math.Round(Permille, 2);
+
+                if (Permille < 0)
+                {
+                    Person.CurPermille = 0f;
+                    Person.Drinks = 0;
+                }
+                Person.CurPermille = (float)Permille;
+                UpdatePerson(Person);
+                Commit();
             }
-
-            var time = (DateTime.Now - Person.DrinkingStart).TotalHours - 1;
-            double Permille = (Person.Drinks * 12) / (Person.Weight * ratio) - (0.15 * time);
-
-            if (Permille < 0)
+            else
             {
-                Permille = 0f;
-                Person.DrinkingStart = DateTime.Now;
-                Person.Drinks = 0;
+                Person.CurPermille = 0f;
+                UpdatePerson(Person);
+                Commit();
             }
-            Person.CurPermille = (float)Permille;
-            UpdatePerson(Person);
-            Commit();
         }
     }
 }

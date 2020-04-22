@@ -23,23 +23,20 @@ namespace WebApplication1.Pages
             this.htmlHelper = htmlHelper;
         }
 
+        [BindProperty]
         public Person Person { get; set; }
-
+        
+        [BindProperty]
         public int State { get; set; }
 
         public bool NewRecord = false;
 
         public void OnGet(int PersonId, int State)
         {
-            if (PersonId == 0)
-            {
-                PersonId = 2;
-            }
-
             if (State != 2)
             {
                 Person = ServersideAccess.GetPerson(PersonId);
-               ServersideAccess.CalculatePermille(Person);
+                ServersideAccess.CalculatePermille(Person);
             }
             else
             {

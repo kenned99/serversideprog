@@ -25,6 +25,7 @@
         <th>Last name</th>
         <th>Gender</th>
         <th>Permille</th>
+        <th>Start drinking</th>
         <th>Stats</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -37,7 +38,8 @@
     <td>@Per.LastName</td>
     <td>@Per.Gender</td>
     <td>@Per.CurPermille</td>
-    <td><a asp-page="/Stats" asp-route-state="0" class="btn btn-primary">Stats</a></td>
+    <td><a asp-page-handler="StartDrinking" asp-page="/PersonList" asp-route-PersonId="@Per.Id">@Per.DrinkingStart</a></td>
+    <td><a asp-page="/Stats" asp-route-state="0" asp-route-PersonId="@Per.Id" class="btn btn-primary">Stats</a></td>
     <td><a asp-page="/Stats" asp-route-state="1" asp-route-PersonId="@Per.Id" class="btn btn-success">Edit</a></td>
     <td><a asp-page-handler="Delete" asp-page="/PersonList" asp-route-PersonId="@Per.Id" class="btn btn-danger">Delete</a></td>
 </tr>

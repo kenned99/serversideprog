@@ -30,7 +30,7 @@ namespace ServerSide.Model
         public GenderEnum Gender { get; set; }
 
         [Required]
-        [Range(40, 200, ErrorMessage = "You weight somewhere between 40 and 200, type in your real weight.")]
+        [Range(40, 200, ErrorMessage = "You weigh somewhere between 40 and 200, type in your real weight.")]
         public int Weight { get; set; }
 
         public float CurPermille { get; set; }
