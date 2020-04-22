@@ -35,7 +35,7 @@ namespace ServerSideTest
             Person newPerson = new Person();
             newPerson.FirstName = uniqueFirstName;
             newPerson.LastName = "UnitTestEfternavn";
-            newPerson.Weight = 25;
+            newPerson.Weight = 81;
             newPerson.Gender = GenderEnum.Male;
             newPerson.CurPermille = 1;
             newPerson.TopPermille = 1;
@@ -62,7 +62,7 @@ namespace ServerSideTest
             Person newPerson = new Person();
             newPerson.FirstName = uniqueFirstName;
             newPerson.LastName = "UnitTestEfternavn";
-            newPerson.Weight = 25;
+            newPerson.Weight = 81;
             newPerson.Gender = GenderEnum.Male;
             newPerson.CurPermille = 1;
             newPerson.TopPermille = 1;
@@ -89,7 +89,7 @@ namespace ServerSideTest
             Person newPerson = new Person();
             newPerson.FirstName = uniqueFirstName;
             newPerson.LastName = "UnitTestEfternavn";
-            newPerson.Weight = 25;
+            newPerson.Weight = 81;
             newPerson.Gender = GenderEnum.Male;
             newPerson.CurPermille = 1;
             newPerson.TopPermille = 1;
@@ -117,7 +117,7 @@ namespace ServerSideTest
             Person newPerson = new Person();
             newPerson.FirstName = uniqueFirstName;
             newPerson.LastName = "UnitTestEfternavn";
-            newPerson.Weight = 25;
+            newPerson.Weight = 81;
             newPerson.Gender = GenderEnum.Male;
             newPerson.CurPermille = 1;
             newPerson.TopPermille = 1;
