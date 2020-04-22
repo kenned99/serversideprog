@@ -39,7 +39,7 @@ namespace WebApplication1.Pages
             if (State != 2)
             {
                 Person = ServersideAccess.GetPerson(PersonId);
-                CalculatePermille(Person, 4);
+                CalculatePermille(Person, 3);
             }
             else
             {
@@ -53,7 +53,6 @@ namespace WebApplication1.Pages
                 ServersideAccess.UpdatePerson(Person);
                 ServersideAccess.Commit();
             }
-
             this.State = State;
         }
 
@@ -111,8 +110,11 @@ namespace WebApplication1.Pages
             if (Permille < 0)
             {
                 Permille = 0f;
+                Person.DrinkingStart = DateTime.Now;
             }
             Person.CurPermille = (float)Permille;
+            ServersideAccess.UpdatePerson(Person);
+            ServersideAccess.Commit();
         }
     }
 }

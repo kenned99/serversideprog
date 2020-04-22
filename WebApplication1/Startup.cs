@@ -51,6 +51,7 @@ namespace WebApplication1
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers(); 
                 endpoints.MapRazorPages();
             });
         }
