@@ -51,6 +51,7 @@ namespace WebApplication1.Pages
                 NewRecord = true;
                 Person.TopPermille = Person.CurPermille;
                 ServersideAccess.UpdatePerson(Person);
+                ServersideAccess.Commit();
             }
 
             this.State = State;

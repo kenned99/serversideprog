@@ -10,7 +10,7 @@
         <h1>Stats</h1>
         <div class="row">
             <div class="border-primary col-4">
-                <h3>Can you drive?</h3>
+                <h3>Are you allowed to drive?</h3>
 
                 @if (Model.Person.CurPermille >= 0.5)
                 {
@@ -23,8 +23,8 @@
             </div>
 
             <div class="col-4">
-                <h3>Drinking stats:</h3>
-                <label asp-for="@Model.Person.CurPermille">Current permille: @Model.Person.CurPermille</label><br>
+                <h3 asp-for="@Model.Person.CurPermille">Current permille: </h3>
+                <h1>@Model.Person.CurPermille</h1><br>
                 <label asp-for="@Model.Person.TopPermille">Top permille: @Model.Person.TopPermille</label>
                 @if (Model.NewRecord)
                 {
