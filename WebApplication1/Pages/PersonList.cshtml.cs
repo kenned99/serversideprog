@@ -11,20 +11,26 @@ namespace WebApplication1.Pages
 {
     public class PersonListModel : PageModel
     {
-        private readonly IServersideAccess serverside;
+        private readonly IServersideAccess ServersideAccess;
 
         [BindProperty(SupportsGet = true)]
         public string Filter { get; set; }
 
         public PersonListModel(IServersideAccess serverside)
         {
-            this.serverside = serverside;
+            this.ServersideAccess = serverside;
         }
-        public IEnumerable<Person> People => serverside.GetPersonByName(Filter).OrderBy(x => x.Id);
+
+        protected void Application_Start (object sender, EventArgs e)
+        {
+            
+        }
+
+        public IEnumerable<Person> People => ServersideAccess.GetPersonByName(Filter).OrderBy(x => x.Id);
         public IActionResult OnGetDelete(int PersonId)
         {
-            serverside.DeletePerson(PersonId);
-            serverside.Commit();
+            ServersideAccess.DeletePerson(PersonId);
+            ServersideAccess.Commit();
 
             TempData.Clear();
             TempData.Add("lastAction", "Person with ID: \"" + PersonId + "\" was removed!");

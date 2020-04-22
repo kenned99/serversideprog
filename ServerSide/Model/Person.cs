@@ -26,8 +26,6 @@ namespace ServerSide.Model
         [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$", ErrorMessage = "Only letters are allowed in last name")]
         public string LastName { get; set; }
 
-
-
         [Required]
         public GenderEnum Gender { get; set; }
 
@@ -39,7 +37,7 @@ namespace ServerSide.Model
 
         public float TopPermille { get; set; }
 
-        public int RecommendedWater { get; set; }
+        public int Drinks { get; set; }
 
         [Required]
         public DateTime DrinkingStart { get; set; }
