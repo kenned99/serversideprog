@@ -92,7 +92,7 @@ namespace ServerSide
                 var time = (DateTime.Now - Person.DrinkingStart).TotalHours;
                 if (time >= 1)
                 {
-                    time = time - 1;
+                    time -= 1;
                 }
 
                 double Permille = (Person.Drinks * 12) / (Person.Weight * ratio) - (0.15 * time);

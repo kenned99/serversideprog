@@ -9,7 +9,6 @@ namespace ServerSide.Model
     {
         public int Id { get; set; }
 
-        [Required]
         [StringLength(60, MinimumLength = 2)]
         [RegularExpression(@"^[a-zA-ZæøåÆØÅ]+$0-9\-")]
         public string Name { get; set; }

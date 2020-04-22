@@ -39,7 +39,6 @@ namespace ServerSide.Model
 
         public int Drinks { get; set; }
 
-        [Required]
         public DateTime DrinkingStart { get; set; }
     }
 }
