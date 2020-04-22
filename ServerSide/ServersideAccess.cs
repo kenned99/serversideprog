@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using ServerSideData;
+using Microsoft.EntityFrameworkCore;
 
 namespace ServerSide
 {
@@ -25,6 +26,11 @@ namespace ServerSide
             return db.Persons.Find(id);
         }
 
+        public Drink GetDrink(int id)
+        {
+            return db.Drinks.Find(id);
+        }
+
         public IEnumerable<Person> GetPersonByName(string name = null)
         {
             var query = from d in db.Persons
@@ -33,6 +39,17 @@ namespace ServerSide
                         select d;
             return query;
         }
+
+        public IEnumerable<Drink> GetDrinkByName(string name = null)
+        {
+            var query = from d in db.Drinks
+                        where d.Name.StartsWith(name) || string.IsNullOrEmpty(name)
+                        orderby d.Name
+                        select d;
+            return query;
+        }
+        
+        
 
         public Person AddPerson(Person NewPerson)
         {
@@ -44,6 +61,11 @@ namespace ServerSide
         {
             db.Update(UpdatedPerson);
             return UpdatedPerson;
+        }
+        public Drink UpdateDrink(Drink UpdatedDrink)
+        {
+            db.Update(UpdatedDrink);
+            return UpdatedDrink;
         }
 
         public int DeletePerson(int id)

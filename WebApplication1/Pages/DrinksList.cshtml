@@ -1,0 +1,35 @@
+﻿@page
+@model WebApplication1.Pages.DrinksListModel
+@{
+    ViewData["Title"] = "DrinksList";
+}
+
+<h1>DrinksListe</h1>
+@TempData["lastAction"]
+<table class="table">
+    <tr>
+        <td>Drink id</td>
+        <td class="active">Drink name</td>
+        <td class="active">Drink units</td>
+        <td class="active">Times drank</td>
+        <td></td>
+    </tr>
+    @foreach (var drink in Model.Drinks)
+    {
+        <form method="post">
+
+            <tr>
+                @{Model.DrinkId = drink.Id; }
+                <td><input asp-for="DrinkId" readonly class="form-control" /></td>
+                <td>@drink.Name</td>
+                <td>@drink.StandardDrinks</td>
+                <td>@drink.TimesDrank</td>
+
+                <td><button type="submit" asp-page-handler="Add" class="btn btn-primary">+</button></td>
+                <td><button type="submit" asp-page-handler="Minus" class="btn btn-outline-primary">-</button></td>
+
+            </tr>
+        </form>
+    }
+
+</table>
