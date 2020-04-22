@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServerSideData;
 
 namespace ServerSide.Migrations
 {
     [DbContext(typeof(PersonsDBContext))]
-    partial class PersonsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200421133443_SpellingCorrection")]
+    partial class SpellingCorrection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace ServerSide.Migrations
                     b.Property<DateTime>("DrinkingStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Drinks")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(60)")
@@ -70,6 +69,9 @@ namespace ServerSide.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
+
+                    b.Property<int>("RecommendedWater")
+                        .HasColumnType("int");
 
                     b.Property<float>("TopPermille")
                         .HasColumnType("real");

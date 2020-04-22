@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServerSideData;
 
 namespace ServerSide.Migrations
 {
     [DbContext(typeof(PersonsDBContext))]
-    partial class PersonsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200421105231_NN")]
+    partial class NN
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,29 +51,29 @@ namespace ServerSide.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("CurPermille")
+                    b.Property<float>("CurPromille")
                         .HasColumnType("real");
 
                     b.Property<DateTime>("DrinkingStart")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Drinks")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
-                    b.Property<float>("TopPermille")
+                    b.Property<int>("RecommendedWater")
+                        .HasColumnType("int");
+
+                    b.Property<float>("TopPromille")
                         .HasColumnType("real");
 
                     b.Property<int>("Weight")

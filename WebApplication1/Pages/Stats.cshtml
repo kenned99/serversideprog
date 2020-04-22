@@ -1,39 +1,120 @@
-﻿@page
+﻿@page "PersonId:int, State:int"
 @model WebApplication1.Pages.StatsModel
 @{
     ViewData["Title"] = "Stats";
 }
-<h1>Stats</h1>
-<div class="row">
-<div class="border-primary col-4">
-    <h3>Can you drive?</h3>
-    
-    @if (Model.Person.CurPromille >= 0.5)
-    {
-        <h4 class="badge-danger badge">No</h4>
-    }
-    else
-    {
-        <h4 class="badge-success badge">Yes</h4>
-    }
-</div>
 
-<div class="col-4">
-    <h3>Drinking stats:</h3>
-    <label asp-for="@Model.Person.CurPromille">Current promille: @Model.Person.CurPromille</label>
-    <label asp-for="@Model.Person.TopPromille">Top promille: @Model.Person.TopPromille</label>
-    @if (Model.Person.CurPromille > Model.Person.TopPromille)
-    {
-        <label class="text-success">You've never been this drunk before! Congratulations!</label>
+@switch (Model.State)
+{
+    case 0:
+        <h1>Stats</h1>
+        <div class="row">
+            <div class="border-primary col-4">
+                <h3>Are you allowed to drive?</h3>
 
-    }
-</div>
+                @if (Model.Person.CurPermille >= 0.5)
+                {
+                    <h4 class="badge-danger badge">No</h4>
+                }
+                else
+                {
+                    <h4 class="badge-success badge">Yes</h4>
+                }
+            </div>
 
-<div class="col-4">
-    <h3>General information:</h3>
-    <label>Name: @Model.Person.FirstName @Model.Person.LastName</label>
-    <label asp-for="@Model.Person.Gender">Gender: @Model.Person.Gender</label>
-    <label asp-for="@Model.Person.Weight">Weight: @Model.Person.Weight kg.</label>
-    <label asp-for="@Model.Person.DrinkingStart">You started drinking at: @Model.Person.DrinkingStart</label>
-</div>
-</div>
+            <div class="col-4">
+                <h3 asp-for="@Model.Person.CurPermille">Current permille: </h3>
+                <h1>@Model.Person.CurPermille</h1><br>
+
+                <label asp-for="@Model.Person.TopPermille">Top permille: @Model.Person.TopPermille</label>
+                @if (Model.NewRecord)
+                {
+                    <label class="text-success">You've never been this drunk before! Congratulations!</label>
+                }
+            </div>
+
+            <div class="col-4">
+                <h3>General information:</h3>
+                <label>Name: @Model.Person.FirstName @Model.Person.LastName</label><br>
+                <label asp-for="@Model.Person.Gender">Gender: @Model.Person.Gender</label><br>
+                <label asp-for="@Model.Person.Weight">Weight: @Model.Person.Weight kg.</label><br>
+                <label asp-for="@Model.Person.DrinkingStart">You started drinking at: @Model.Person.DrinkingStart</label>
+            </div>
+        </div>
+        break;
+
+    case 1:
+        <h1>@Model.Person.FirstName @Model.Person.LastName</h1>
+        <h5>ID: @Model.Person.Id</h5>
+
+        <form method="post">
+            <!--HIDDEN VALUES-->
+            <!--ID:-->
+            <input asp-for="Person.Id" readonly hidden />
+            <!--DrinkingStart:-->
+            <input asp-for="Person.DrinkingStart" readonly hidden />
+            <!--Drinks:-->
+            <input asp-for="Person.Drinks" readonly hidden />
+
+            Fornavn:
+            <div class="form-group">
+                <input class="form-control" asp-for="Person.FirstName" />
+                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
+            </div>
+
+            Efternavn:
+            <div class="form-group">
+                <input class="form-control" asp-for="Person.LastName" />
+                <span asp-validation-for="Person.LastName" class="text-danger"></span>
+            </div>
+
+            Weight:
+            <div class="form-group">
+                <input class="form-control" asp-for="Person.Weight" />
+                <span asp-validation-for="Person.Weight" class="text-danger"></span>
+            </div>
+
+            Gender:
+            <div class="form-group">
+                <div class="form-group"><select multiple class="form-control" asp-for="Person.Gender" asp-items="@Model.GenderListItems"></select></div>
+                <span asp-validation-for="Person.Gender" class="text-danger"></span>
+            </div>
+
+            <button type="submit" asp-page-handler="Update" class="btn-success btn" asp-route-State="1">Update user</button>
+            <button type="submit" asp-page-handler="Discard" class="btn-danger btn">Discard</button>
+        </form>
+        break;
+
+    case 2:
+        <h1>Create Person</h1>
+
+        <form method="post">
+
+            Fornavn:
+            <div class="form-group">
+                <input class="form-control" asp-for="Person.FirstName"/>
+                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
+            </div>
+
+            Efternavn:
+            <div class="form-group">
+                <input class="form-control" asp-for="Person.LastName"/>
+                <span asp-validation-for="Person.LastName" class="text-danger"></span>
+            </div>
+            Weight:
+            <div class="form-group">
+                <input class="form-control" asp-for="Person.Weight"/>
+                <span asp-validation-for="Person.Weight" class="text-danger"></span>
+            </div>
+            Gender:
+            <div class="form-group">
+                <div class="form-group"><select multiple class="form-control" asp-for="Person.Gender" asp-items="@Model.GenderListItems"></select></div>
+                <span asp-validation-for="Person.Gender" class="text-danger"></span>
+            </div>
+            <button type="submit" asp-page-handler="Add" class="btn btn-success mb-5" asp-route-State="2">Add</button>
+            <button type="submit" asp-page-handler="Discard" class="btn btn-danger mb-5">Discard</button>
+        </form>
+        break;
+    default:
+        break;
+}

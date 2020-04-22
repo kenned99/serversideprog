@@ -78,5 +78,41 @@ namespace ServerSide
             }
             return 0;
         }
+
+        public void CalculatePermille(Person Person)
+        {
+            if (Person.Drinks > 0)
+            {
+                double ratio = 0.7; //Male ratio
+                if (Person.Gender == GenderEnum.Female)
+                {
+                    ratio = 0.6;
+                }
+
+                var time = (DateTime.Now - Person.DrinkingStart).TotalHours;
+                if (time >= 1)
+                {
+                    time = time - 1;
+                }
+
+                double Permille = (Person.Drinks * 12) / (Person.Weight * ratio) - (0.15 * time);
+                Permille = Math.Round(Permille, 2);
+
+                if (Permille < 0)
+                {
+                    Person.CurPermille = 0f;
+                    Person.Drinks = 0;
+                }
+                Person.CurPermille = (float)Permille;
+                UpdatePerson(Person);
+                Commit();
+            }
+            else
+            {
+                Person.CurPermille = 0f;
+                UpdatePerson(Person);
+                Commit();
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 using ServerSide.Model;
 using ServerSide;
 using System.Collections.Generic;
-using ServerSideData;
 
 namespace ServerSide
 {
@@ -16,5 +15,8 @@ namespace ServerSide
         public Drink UpdateDrink(Drink UpdatedDrink);
         public int DeletePerson(int id);
         public int Commit();
+
+        public void CalculatePermille(Person Person);
+
     }
 }

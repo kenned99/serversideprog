@@ -1,0 +1,47 @@
+﻿@page
+@model WebApplication1.Pages.PersonListModel
+@{
+    ViewData["Title"] = "Person Liste";
+}
+
+<h1>Person List</h1>
+@TempData["lastAction"]
+
+<div>
+    <form class="form-inline float-left" method="get">
+        <!--form inline får søg på linje-->
+        <input class="form-control mb-5" asp-for="Filter" placeholder="Search" />
+        <button class="btn btn-primary mb-5">Search</button>
+    </form>
+    <div class="float-right">
+        <a asp-page="/Stats" asp-route-State="2" class="btn btn-success mb-5">Create Person</a>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Gender</th>
+        <th>Permille</th>
+        <th>Start drinking</th>
+        <th>Stats</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var Per in Model.People)
+    {
+<tr>
+    <td>@Per.Id</td>
+    <td>@Per.FirstName</td>
+    <td>@Per.LastName</td>
+    <td>@Per.Gender</td>
+    <td>@Per.CurPermille</td>
+    <td><a asp-page-handler="StartDrinking" asp-page="/PersonList" asp-route-PersonId="@Per.Id">@Per.DrinkingStart</a></td>
+    <td><a asp-page="/Stats" asp-route-state="0" asp-route-PersonId="@Per.Id" class="btn btn-primary">Stats</a></td>
+    <td><a asp-page="/Stats" asp-route-state="1" asp-route-PersonId="@Per.Id" class="btn btn-success">Edit</a></td>
+    <td><a asp-page-handler="Delete" asp-page="/PersonList" asp-route-PersonId="@Per.Id" class="btn btn-danger">Delete</a></td>
+</tr>
+    }
+</table>
