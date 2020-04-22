@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServerSide;
 using ServerSide.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebApplication1.Pages
 {
@@ -21,11 +19,6 @@ namespace WebApplication1.Pages
             this.ServersideAccess = serverside;
         }
 
-        protected void Application_Start (object sender, EventArgs e)
-        {
-            
-        }
-
         public IEnumerable<Person> People => ServersideAccess.GetPersonByName(Filter).OrderBy(x => x.Id);
         public IActionResult OnGetDelete(int PersonId)
         {
@@ -35,6 +28,14 @@ namespace WebApplication1.Pages
             TempData.Clear();
             TempData.Add("lastAction", "Person with ID: \"" + PersonId + "\" was removed!");
             return RedirectToPage("./PersonList");
+        }
+
+        public void OnGet()
+        {
+            foreach (var Per in People)
+            {
+                ServersideAccess.CalculatePermille(Per);
+            }
         }
     }
 }

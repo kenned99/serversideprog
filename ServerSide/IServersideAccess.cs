@@ -13,7 +13,7 @@ namespace ServerSide
         public int DeletePerson(int id);
         public int Commit();
 
-        public void CalculatePermille(Person Person, int Drinks);
+        public void CalculatePermille(Person Person);
 
     }
 }

@@ -39,7 +39,7 @@ namespace WebApplication1.Pages
             if (State != 2)
             {
                 Person = ServersideAccess.GetPerson(PersonId);
-               ServersideAccess.CalculatePermille(Person, 3);
+               ServersideAccess.CalculatePermille(Person);
             }
             else
             {
