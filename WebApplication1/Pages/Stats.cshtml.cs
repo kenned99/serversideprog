@@ -73,7 +73,7 @@ namespace WebApplication1.Pages
             }
         }
 
-        public IActionResult OnPostUndo()
+        public IActionResult OnPostDiscard()
         {
             TempData.Add("lastAction", "Person not updated!");
             return RedirectToPage("./PersonList");
