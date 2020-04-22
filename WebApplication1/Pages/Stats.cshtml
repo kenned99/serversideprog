@@ -41,6 +41,34 @@
                 <label asp-for="@Model.Person.DrinkingStart">You started drinking at: @Model.Person.DrinkingStart</label>
             </div>
         </div>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <td class="active">Drink name</td>
+                    <td class="active">Drink units</td>
+                    <td class="active">Times drank</td>
+                    <td></td>
+                </tr>
+                @foreach (var drink in Model.Drinks)
+                {
+                    <form method="post">
+
+                        <tr>
+                            <input asp-for="@Model.Drink.Id" readonly hidden />
+                            <input asp-for="@Model.Person.Id" readonly hidden />
+                            <td>@drink.Name</td>
+                            <td>@drink.StandardDrinks</td>
+                            <td>@drink.TimesDrank</td>
+
+                            <td><button type="submit" asp-page-handler="AddDrink" asp-route-DrinkId="@drink.Id" asp-route-PersonId="@Model.Person.Id" class="btn btn-primary">+</button></td>
+                            <td><button type="submit" asp-page-handler="MinusDrink" asp-route-DrinkId="@drink.Id" asp-route-PersonId="@Model.Person.Id" class="btn btn-outline-primary">-</button></td>
+
+                        </tr>
+                    </form>
+                }
+
+            </table>
+        </div>
         break;
 
     case 1:
@@ -90,13 +118,13 @@
 
         <form method="post">
 
-            Fornavn:
+            First name:
             <div class="form-group">
                 <input class="form-control" asp-for="Person.FirstName"/>
                 <span asp-validation-for="Person.FirstName" class="text-danger"></span>
             </div>
 
-            Efternavn:
+            Last name:
             <div class="form-group">
                 <input class="form-control" asp-for="Person.LastName"/>
                 <span asp-validation-for="Person.LastName" class="text-danger"></span>
