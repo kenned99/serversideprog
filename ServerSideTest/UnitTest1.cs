@@ -6,7 +6,6 @@ using ServerSideData;
 using System;
 using System.Linq;
 
-
 namespace ServerSideTest
 {
     [TestClass]
@@ -33,20 +32,20 @@ namespace ServerSideTest
             // Arrange
             var uniqueFirstName = Guid.NewGuid().ToString();
 
-            Person newUser = new Person();
-            newUser.FirstName = uniqueFirstName;
-            newUser.LastName = "UnitTestEfternavn";
-            newUser.Weight = 25;
-            newUser.Gender = GenderEnum.Male;
-            newUser.CurPermille = 1;
-            newUser.TopPermille = 1;
+            Person newPerson = new Person();
+            newPerson.FirstName = uniqueFirstName;
+            newPerson.LastName = "UnitTestEfternavn";
+            newPerson.Weight = 25;
+            newPerson.Gender = GenderEnum.Male;
+            newPerson.CurPermille = 1;
+            newPerson.TopPermille = 1;
 
             //Gem ny user i DB
-            serversideAccess.AddPerson(newUser);
+            serversideAccess.AddPerson(newPerson);
             
             var noOfRowsAffectedInDb = serversideAccess.Commit();
             //Hent yser fra DB med samme Id som lige er blevet gemt
-            var retrivedPersons = serversideAccess.GetPerson(newUser.Id);
+            var retrivedPersons = serversideAccess.GetPerson(newPerson.Id);
 
             // Assert
             Assert.AreEqual(1, noOfRowsAffectedInDb, "Det var forventet at der var indsat én række i databasen");
@@ -60,19 +59,19 @@ namespace ServerSideTest
             // Arrange
             var uniqueFirstName = Guid.NewGuid().ToString();
 
-            Person newUser = new Person();
-            newUser.FirstName = uniqueFirstName;
-            newUser.LastName = "UnitTestEfternavn";
-            newUser.Weight = 25;
-            newUser.Gender = GenderEnum.Male;
-            newUser.CurPermille = 1;
-            newUser.TopPermille = 1;
+            Person newPerson = new Person();
+            newPerson.FirstName = uniqueFirstName;
+            newPerson.LastName = "UnitTestEfternavn";
+            newPerson.Weight = 25;
+            newPerson.Gender = GenderEnum.Male;
+            newPerson.CurPermille = 1;
+            newPerson.TopPermille = 1;
 
-            //Gem ny User i DB
-            serversideAccess.AddPerson(newUser);
+            //Gem ny Person i DB
+            serversideAccess.AddPerson(newPerson);
             var noOfRowsAffectedInDb = serversideAccess.Commit();
 
-            //Hent user fra DB med samme Fornavn som lige er blevet gemt
+            //Hent Person fra DB med samme Fornavn som lige er blevet gemt
             var retrivedPersons = serversideAccess.GetPersonByName(uniqueFirstName);
 
             // Assert
@@ -80,12 +79,65 @@ namespace ServerSideTest
             Assert.AreEqual(uniqueFirstName, retrivedPersons.ToList<Person>()[0].FirstName, "Det var forventet at den hentede deltagers fornavn var identisk med det søgte fornavn");
         }
 
-
-
-
+        //Tester om man kan slette en person
         [TestMethod]
-        public void TestMethod1()
+        public void DeletePerson()
         {
+            //Arangere
+            var uniqueFirstName = Guid.NewGuid().ToString();
+
+            Person newPerson = new Person();
+            newPerson.FirstName = uniqueFirstName;
+            newPerson.LastName = "UnitTestEfternavn";
+            newPerson.Weight = 25;
+            newPerson.Gender = GenderEnum.Male;
+            newPerson.CurPermille = 1;
+            newPerson.TopPermille = 1;
+
+            //Gem i DB
+            serversideAccess.AddPerson(newPerson);
+            serversideAccess.Commit();
+
+            //Ændrer det
+            serversideAccess.DeletePerson(newPerson.Id);
+            serversideAccess.Commit();
+
+            //Tjekker/vudere
+            var deletePerson = serversideAccess.GetPerson(newPerson.Id);
+            Assert.IsNull(deletePerson, "Der skete en fejl");
+        }
+
+        //Edit Person
+        [TestMethod]
+        public void EditPerson()
+        {
+            //arrangere
+            var uniqueFirstName = Guid.NewGuid().ToString();
+
+            Person newPerson = new Person();
+            newPerson.FirstName = uniqueFirstName;
+            newPerson.LastName = "UnitTestEfternavn";
+            newPerson.Weight = 25;
+            newPerson.Gender = GenderEnum.Male;
+            newPerson.CurPermille = 1;
+            newPerson.TopPermille = 1;
+
+            //Gem i DB
+            serversideAccess.AddPerson(newPerson);
+            serversideAccess.Commit();
+
+            //Ændre niveau type
+            newPerson.Gender = GenderEnum.Female;
+
+            //Opdatere i DB
+            serversideAccess.UpdatePerson(newPerson);
+            serversideAccess.Commit();
+
+            //Henter den opdaterede deltager
+            var editedPerson = serversideAccess.GetPerson(newPerson.Id);
+
+            // vurdere
+            Assert.AreEqual(GenderEnum.Female, editedPerson.Gender, "Nu er deltageren blevet rettet");
         }
     }
 }
